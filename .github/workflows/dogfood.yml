@@ -1,0 +1,25 @@
+name: Dogfood
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  compare:
+    name: LockLens compares the example lockfiles
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Uses the action.yml in this repository. The example pair intentionally
+      # contains a checksum change, a major upgrade, a downgrade, an addition,
+      # and a removal, so SARIF upload is exercised without failing the job.
+      - uses: ./
+        with:
+          old: examples/before/package-lock.json
+          new: examples/after/package-lock.json

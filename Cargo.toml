@@ -1,0 +1,29 @@
+[package]
+name = "locklens"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+authors = ["hix-pro"]
+description = "See what actually changed between two lockfiles."
+repository = "https://github.com/hix-pro/locklens"
+homepage = "https://github.com/hix-pro/locklens"
+readme = "README.md"
+license = "MIT"
+keywords = ["lockfile", "dependencies", "diff", "supply-chain", "cli"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+semver = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml_ng = "0.10"
+toml = "0.9"
+
+[dev-dependencies]
+tempfile = "3.15"
+
+[profile.release]
+lto = "thin"
+strip = true
