@@ -296,7 +296,7 @@ steps:
   - run: git show origin/${{ github.base_ref }}:package-lock.json > /tmp/package-lock.json.base
   - run: cargo install --git https://github.com/hix-pro/locklens --locked
   - run: locklens diff /tmp/package-lock.json.base package-lock.json --sarif --fail-on warning > locklens.sarif
-  - uses: github/codeql-action/upload-sarif@v3
+  - uses: github/codeql-action/upload-sarif@v4
     if: always()
     with:
       sarif_file: locklens.sarif
